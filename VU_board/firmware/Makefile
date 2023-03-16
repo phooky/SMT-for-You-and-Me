@@ -17,24 +17,21 @@
 #----------------------------------------------------------------------------
 # On command line:
 #
-# make all = Make software.
+# make = Make software.
 #
 # make clean = Clean out built project files.
-#
-# make coff = Convert ELF to AVR COFF.
-#
-# make extcoff = Convert ELF to AVR Extended COFF.
 #
 # make program = Download the hex file to the device, using avrdude.
 #                Please customize the avrdude settings below first!
 #
+# make fuses = Program the fuses on the AVR device.
+#
 # make debug = Start either simulavr or avarice as specified for debugging, 
 #              with avr-gdb or avr-insight as the front end for debugging.
 #
-# make filename.s = Just compile filename.c into the assembler code only.
+# make coff = Convert ELF to AVR COFF.
 #
-# make filename.i = Create a preprocessed source file for use in submitting
-#                   bug reports to the GCC project.
+# make extcoff = Convert ELF to AVR Extended COFF.
 #
 # To rebuild project do "make clean" then "make all".
 #----------------------------------------------------------------------------
@@ -125,6 +122,10 @@ CPPDEFS = -DF_CPU=$(F_CPU)UL
 #CPPDEFS += -D__STDC_LIMIT_MACROS
 #CPPDEFS += -D__STDC_CONSTANT_MACROS
 
+# The low and high fuse bytes.
+# I used an online fuse calculator for this:
+# http://eleccelerator.com/fusecalc/fusecalc.php?chip=atmega48&LOW=E2&HIGH=DF&EXTENDED=FF&LOCKBIT=FF
+# If the link is dead, it's not hard to work out yourself from the datasheet.
 LFUSE = 0xE2
 HFUSE = 0xDF
 
