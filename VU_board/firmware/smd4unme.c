@@ -1,4 +1,5 @@
 #include <stdint.h>
+#include <stdlib.h>
 #include <avr/io.h>
 #include <avr/interrupt.h>
 #include <util/delay.h>
@@ -32,10 +33,20 @@ const uint8_t gamma_table[16] = {
 };
 
 typedef enum {
-    MODE_TEST = 0,
+    MODE_DIRECT = 0,
     MODE_VU,
     MODE_ATTRACT,
+    MODE_MAX, // for cycling
 } Mode;
+
+// Timer 1 is used to refresh the LED pattern from the disply buffer(dbuf).
+
+// Mode summary:
+// DIRECT mode: samples analog 0 input @122 Hz on Timer 0 and updates dbuf.
+// VU mode: samples analog 0 input continuously and uses an FIR filter to
+// generate a value, which is used to update dbuf.
+// ATTRACT mode: displays a series of pretty patterns. Uses Timer 0 @122 Hz
+// for each frame.
 
 static Mode mode = MODE_VU;
 
@@ -69,7 +80,7 @@ void init_display(void) {
     PORTD = dpat; DDRD = dpat;
     PORTE = epat; DDRE = epat;
 }
-    
+
 void init_timers(void) {
     // Timer 0: ~122 Hz
     // Timer 0: WGM mode 0 (overflow at 0xff)
@@ -87,71 +98,122 @@ void init_timers(void) {
     TIMSK1 = 0x01; // interrupt on overflow
 }
 
-// Start the adc 
-void start_adc(void) {
+void enter_mode(Mode new_mode) {
+    mode = new_mode;
+    // set up/shut down ADC for each mode.
+    switch (mode) {
+    case MODE_VU:
+        // Set the ADC to sample continuously.
+        // ADCSRB: ADC free running (continuous), ADTS[2:0] = 000
+        ADCSRB = 0;
+        // ADCSRA: ADC is enabled, autotriggers, starts conversion, prescaler /8
+        ADCSRA = BV(ADEN) | BV(ADSC) | BV(ADATE) | BV(ADIE) | BV(ADPS2) | BV(ADPS1);
+        break;
+    case MODE_DIRECT:
+        // Set the ADC to sample on timer 0 (122 Hz).
+        // ADCSRB: ADC auto trigger on Timer0 overflow, ADTS[2:0] = 100
+        ADCSRB = BV(ADTS2);
+        // ADCSRA: ADC is enabled, autotriggers, starts conversion, prescaler /8
+        ADCSRA = BV(ADEN) | BV(ADSC) | BV(ADATE) | BV(ADIE) | BV(ADPS2) | BV(ADPS1);
+        break;
+    case MODE_ATTRACT:
+    default: // bad values -> attract
+        // Shut down the ADC; it is not used.
+        ADCSRA = 0;
+        break;
+    }
+}
+
+// Initialize the static parameters on the adc 
+void init_adc(void) {
     // ADMUX: Reference voltage is AVcc, selected with REFS[1:0] = 01
     // ADMUX: sampling ADC0 with MUX[3:0] = 0000
     ADMUX = BV(REFS0);
-    // ADCSRB: ADC auto trigger on Timer0 overflow, ADTS[2:0] = 100
-    ADCSRB = BV(ADTS2);
-    // ADCSRA:
-    ADCSRA = BV(ADEN) | BV(ADSC) | BV(ADATE) | BV(ADIE) | BV(ADPS2) | BV(ADPS1);
+    // DIDR0: Disable the digital input on the pin we're using to sample analog
+    // to save a tiny bit of power. Pretty deep cut.
+    DIDR0 = BV(ADC0D);
+    
 }
 
 uint16_t build_pat(uint8_t v) {
     uint16_t rv = 0;
     for (int8_t i = 0; i < 16; i++) {
-        if (dbuf[15-i] >= v) rv |= 0x01;
         rv = rv << 1;
+        if (dbuf[15-i] > v) rv |= 0x01;
     }
     return rv;
 }
 
 int main (void) {
     init_display();
-    start_adc();
+    // PC1 is "analog 1", which we'll use for our button
+    PORTC |= BV(1); // Set the pull-up
+    init_timers();
+    init_adc();
+    enter_mode(MODE_ATTRACT);
     sei();
     for (int i = 0; i < 16; i++) {
         dbuf[i] = gamma_table[i];
     }
-    init_timers();
     while(1) {
-        switch(mode) {
-        case MODE_VU:
-            
-            break;
-        }
     };
     return (0);
 }
 
-static uint8_t ctr = 0;
-static uint8_t div = 0;
+static uint16_t ctr = 0;
+
+static uint8_t button_timeout = 0; // We use this to debounce pushes on PC1
+
+
+// Timer 0 triggers at 122Hz.
 
 ISR(TIMER0_OVF_vect) {
-    if (div == 0) {
-        //display_bits(1 << (ctr %16));
-        ctr++;
+    if ((PINC & BV(1)) == 0) {
+        if (button_timeout == 0) {
+            button_timeout = 16; // debounce
+            // Perform press
+            enter_mode((mode + 1) % MODE_MAX);
+        }
+    } else { if (button_timeout) button_timeout--; }
+    if (mode == MODE_ATTRACT) {
+        ctr += 323;
+        int16_t pulse = (ctr >> 4);
+        for (int8_t i = 0; i < 16; i++) {
+            // Slow pulse: find distance from center.
+            int16_t mark = i << 8;
+            int16_t distance = 255 - abs(mark - pulse);
+            dbuf[i] = (distance>0)?distance:0;
+        }
     }
-    div = (div+1)%20;
 }
 
-static uint8_t slice = 0;
+uint8_t slice = 0;
 
 ISR(TIMER1_OVF_vect) {
-    slice += 16;
-    //display_bits(build_pat(slice));
+    if (mode == MODE_ATTRACT) {
+        slice += 16;
+        display_bits(build_pat(slice));
+    }
 }
+
 
 ISR(ADC_vect) {
     uint16_t v;
     v = ADCL;  
     v += (ADCH<<8); // do we need to prevent out-of-order here?
-    v = (v >> 6) & 0x0f; // scale to 0-16
-    uint16_t pat = 0;
-    while (v--) {
-        pat = (pat<<1) | 1;
+    switch (mode) {
+    case MODE_DIRECT:
+        v = (v >> 4);
+    case MODE_VU:
+        v = (v >> 2) & 0x0f;
+        uint16_t pat = 0;
+        while (v--) {
+            pat = (pat<<1) | 1;
+        }
+        display_bits(pat);
+        break;
+    default:
+        break;
     }
-    display_bits(pat);
 }
 
