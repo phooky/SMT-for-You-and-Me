@@ -21,6 +21,8 @@ uint8_t dbuf[16];
 // 8:  B0, D7, D6, D5,
 // C:  E1, E0, D4, D3
 
+// Mode button: B6.
+
 // The bit patterns for each port.
 const uint8_t bpat = BV(0) | BV(1);
 const uint8_t cpat = BV(2) | BV(3) | BV(4) | BV(5);
@@ -43,8 +45,7 @@ typedef enum {
 
 // Mode summary:
 // DIRECT mode: samples analog 0 input @122 Hz on Timer 0 and updates dbuf.
-// VU mode: samples analog 0 input continuously and uses an FIR filter to
-// generate a value, which is used to update dbuf.
+// VU mode: direct mode scaled up by x16 ;)
 // ATTRACT mode: displays a series of pretty patterns. Uses Timer 0 @122 Hz
 // for each frame.
 
@@ -79,6 +80,11 @@ void init_display(void) {
     PORTC = cpat; DDRC = cpat;
     PORTD = dpat; DDRD = dpat;
     PORTE = epat; DDRE = epat;
+}
+
+void init_button(void) {
+    DDRB &= ~(BV(6));
+    PORTB |= BV(6);
 }
 
 void init_timers(void) {
@@ -146,6 +152,7 @@ uint16_t build_pat(uint8_t v) {
 
 int main (void) {
     init_display();
+    init_button();
     // PC1 is "analog 1", which we'll use for our button
     PORTC |= BV(1); // Set the pull-up
     init_timers();
@@ -168,7 +175,7 @@ static uint8_t button_timeout = 0; // We use this to debounce pushes on PC1
 // Timer 0 triggers at 122Hz.
 
 ISR(TIMER0_OVF_vect) {
-    if ((PINC & BV(1)) == 0) {
+    if ((PINB & BV(6)) == 0) {
         if (button_timeout == 0) {
             button_timeout = 16; // debounce
             // Perform press

@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <export version="E">
   <design>
-    <source>/home/phooky/Repo/phooky/SMT_Soldering_class/SMT_Soldering_class.kicad_sch</source>
-    <date>Mon 06 Mar 2023 02:50:18 PM EST</date>
+    <source>/home/phooky/Repo/phooky/SMT_Soldering_class/VU_board/board/SMT_Soldering_class.kicad_sch</source>
+    <date>Thu 30 Mar 2023 10:50:45 AM EDT</date>
     <tool>Eeschema 6.0.2+dfsg-1</tool>
     <sheet number="1" name="/" tstamps="/">
       <title_block>
-        <title/>
-        <company/>
-        <rev/>
+        <title>SMT For You and Me, VU meter project board</title>
+        <company>NYC Resistor</company>
+        <rev>2</rev>
         <date/>
         <source>SMT_Soldering_class.kicad_sch</source>
-        <comment number="1" value=""/>
+        <comment number="1" value="COPY &lt; IT &gt; RIGHT"/>
         <comment number="2" value=""/>
         <comment number="3" value=""/>
         <comment number="4" value=""/>
@@ -24,9 +24,9 @@
     </sheet>
     <sheet number="2" name="/LED1/" tstamps="/bd966186-9aa3-4fe2-9fee-d28c754ccc6c/">
       <title_block>
-        <title/>
-        <company/>
-        <rev/>
+        <title>LED block</title>
+        <company>NYC Resistor</company>
+        <rev>v1</rev>
         <date/>
         <source>led.kicad_sch</source>
         <comment number="1" value=""/>
@@ -42,9 +42,9 @@
     </sheet>
     <sheet number="3" name="/LED0/" tstamps="/ee01922c-ed93-43a1-b7d4-f586cea191be/">
       <title_block>
-        <title/>
-        <company/>
-        <rev/>
+        <title>LED block</title>
+        <company>NYC Resistor</company>
+        <rev>v1</rev>
         <date/>
         <source>led.kicad_sch</source>
         <comment number="1" value=""/>
@@ -60,9 +60,9 @@
     </sheet>
     <sheet number="4" name="/LED2/" tstamps="/e0c351e8-9c00-43e7-819f-e87265465e16/">
       <title_block>
-        <title/>
-        <company/>
-        <rev/>
+        <title>LED block</title>
+        <company>NYC Resistor</company>
+        <rev>v1</rev>
         <date/>
         <source>led.kicad_sch</source>
         <comment number="1" value=""/>
@@ -78,9 +78,9 @@
     </sheet>
     <sheet number="5" name="/LED3/" tstamps="/239aa751-e354-4d8d-b705-a1b240017442/">
       <title_block>
-        <title/>
-        <company/>
-        <rev/>
+        <title>LED block</title>
+        <company>NYC Resistor</company>
+        <rev>v1</rev>
         <date/>
         <source>led.kicad_sch</source>
         <comment number="1" value=""/>
@@ -96,9 +96,9 @@
     </sheet>
     <sheet number="6" name="/LED4/" tstamps="/056c5426-3e3e-40f3-82cc-670992e83a32/">
       <title_block>
-        <title/>
-        <company/>
-        <rev/>
+        <title>LED block</title>
+        <company>NYC Resistor</company>
+        <rev>v1</rev>
         <date/>
         <source>led.kicad_sch</source>
         <comment number="1" value=""/>
@@ -114,9 +114,9 @@
     </sheet>
     <sheet number="7" name="/LED5/" tstamps="/27dd53ca-61f7-4bb9-b6a8-78101ea67b79/">
       <title_block>
-        <title/>
-        <company/>
-        <rev/>
+        <title>LED block</title>
+        <company>NYC Resistor</company>
+        <rev>v1</rev>
         <date/>
         <source>led.kicad_sch</source>
         <comment number="1" value=""/>
@@ -132,9 +132,9 @@
     </sheet>
     <sheet number="8" name="/LED6/" tstamps="/6e6a4b61-eaec-4267-a76c-c75c5ea67729/">
       <title_block>
-        <title/>
-        <company/>
-        <rev/>
+        <title>LED block</title>
+        <company>NYC Resistor</company>
+        <rev>v1</rev>
         <date/>
         <source>led.kicad_sch</source>
         <comment number="1" value=""/>
@@ -150,9 +150,9 @@
     </sheet>
     <sheet number="9" name="/LED7/" tstamps="/4c45ad15-1cc2-46ff-9e67-5222286a88f7/">
       <title_block>
-        <title/>
-        <company/>
-        <rev/>
+        <title>LED block</title>
+        <company>NYC Resistor</company>
+        <rev>v1</rev>
         <date/>
         <source>led.kicad_sch</source>
         <comment number="1" value=""/>
@@ -168,9 +168,9 @@
     </sheet>
     <sheet number="10" name="/LED8/" tstamps="/3be067ad-a243-4268-b431-5ee9fd4117d4/">
       <title_block>
-        <title/>
-        <company/>
-        <rev/>
+        <title>LED block</title>
+        <company>NYC Resistor</company>
+        <rev>v1</rev>
         <date/>
         <source>led.kicad_sch</source>
         <comment number="1" value=""/>
@@ -186,9 +186,9 @@
     </sheet>
     <sheet number="11" name="/LED9/" tstamps="/067744e3-826a-4c19-b82e-c6ae098db6f1/">
       <title_block>
-        <title/>
-        <company/>
-        <rev/>
+        <title>LED block</title>
+        <company>NYC Resistor</company>
+        <rev>v1</rev>
         <date/>
         <source>led.kicad_sch</source>
         <comment number="1" value=""/>
@@ -204,9 +204,9 @@
     </sheet>
     <sheet number="12" name="/LED10/" tstamps="/0d48a099-3d9d-4c0d-b088-d4fe8b4f3635/">
       <title_block>
-        <title/>
-        <company/>
-        <rev/>
+        <title>LED block</title>
+        <company>NYC Resistor</company>
+        <rev>v1</rev>
         <date/>
         <source>led.kicad_sch</source>
         <comment number="1" value=""/>
@@ -222,9 +222,9 @@
     </sheet>
     <sheet number="13" name="/LED11/" tstamps="/4abafa30-0632-47f5-93b3-cb7fc765206c/">
       <title_block>
-        <title/>
-        <company/>
-        <rev/>
+        <title>LED block</title>
+        <company>NYC Resistor</company>
+        <rev>v1</rev>
         <date/>
         <source>led.kicad_sch</source>
         <comment number="1" value=""/>
@@ -240,9 +240,9 @@
     </sheet>
     <sheet number="14" name="/LED12/" tstamps="/6e0f5f0d-2f39-4de6-88f8-21f8e6253ed4/">
       <title_block>
-        <title/>
-        <company/>
-        <rev/>
+        <title>LED block</title>
+        <company>NYC Resistor</company>
+        <rev>v1</rev>
         <date/>
         <source>led.kicad_sch</source>
         <comment number="1" value=""/>
@@ -258,9 +258,9 @@
     </sheet>
     <sheet number="15" name="/LED13/" tstamps="/1b99dc4e-ec28-4be1-85e2-474b2c7d2995/">
       <title_block>
-        <title/>
-        <company/>
-        <rev/>
+        <title>LED block</title>
+        <company>NYC Resistor</company>
+        <rev>v1</rev>
         <date/>
         <source>led.kicad_sch</source>
         <comment number="1" value=""/>
@@ -276,9 +276,9 @@
     </sheet>
     <sheet number="16" name="/LED14/" tstamps="/214e3610-e09e-4c74-8bf5-97e447206cc0/">
       <title_block>
-        <title/>
-        <company/>
-        <rev/>
+        <title>LED block</title>
+        <company>NYC Resistor</company>
+        <rev>v1</rev>
         <date/>
         <source>led.kicad_sch</source>
         <comment number="1" value=""/>
@@ -294,9 +294,9 @@
     </sheet>
     <sheet number="17" name="/LED15/" tstamps="/f10b4a0a-ad2b-4e43-924c-bbca94515bc2/">
       <title_block>
-        <title/>
-        <company/>
-        <rev/>
+        <title>LED block</title>
+        <company>NYC Resistor</company>
+        <rev>v1</rev>
         <date/>
         <source>led.kicad_sch</source>
         <comment number="1" value=""/>
@@ -375,6 +375,15 @@
       <property name="Sheetfile" value="SMT_Soldering_class.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>9bb17073-c56f-4194-9c1c-6961e03ad142</tstamps>
+    </comp>
+    <comp ref="SW1">
+      <value>SW_Push</value>
+      <footprint>Button_Switch_SMD:SW_Push_1P1T-SH_NO_CK_KMR2xxG</footprint>
+      <libsource lib="Switch" part="SW_Push" description="Push button switch, generic, two pins"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="SMT_Soldering_class.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>104404fd-358b-4a72-9c7d-7be74d74f7fd</tstamps>
     </comp>
     <comp ref="U1">
       <value>ATmega48PB-A</value>
@@ -992,6 +1001,19 @@
         <pin num="32" name="PD2" type="bidirectional"/>
       </pins>
     </libpart>
+    <libpart lib="Switch" part="SW_Push">
+      <description>Push button switch, generic, two pins</description>
+      <docs>~</docs>
+      <fields>
+        <field name="Reference">SW</field>
+        <field name="Value">SW_Push</field>
+        <field name="Datasheet">~</field>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
   </libparts>
   <libraries>
     <library logical="Connector">
@@ -1005,6 +1027,9 @@
     </library>
     <library logical="MCU_Microchip_ATmega">
       <uri>/usr/share/kicad/symbols//MCU_Microchip_ATmega.kicad_sym</uri>
+    </library>
+    <library logical="Switch">
+      <uri>/usr/share/kicad/symbols//Switch.kicad_sym</uri>
     </library>
   </libraries>
   <nets>
@@ -1126,6 +1151,7 @@
       <node ref="J1" pin="6" pinfunction="GND" pintype="passive"/>
       <node ref="J2" pin="5" pinfunction="GND" pintype="power_out"/>
       <node ref="J3" pin="4" pinfunction="Pin_4" pintype="passive"/>
+      <node ref="SW1" pin="1" pinfunction="1" pintype="passive"/>
       <node ref="U1" pin="21" pinfunction="GND" pintype="passive"/>
       <node ref="U1" pin="5" pinfunction="GND" pintype="power_in"/>
     </net>
@@ -1197,7 +1223,11 @@
       <node ref="D16" pin="2" pinfunction="A" pintype="passive"/>
       <node ref="R17" pin="2" pintype="passive"/>
     </net>
-    <net code="43" name="VCC">
+    <net code="43" name="Net-(SW1-Pad2)">
+      <node ref="SW1" pin="2" pinfunction="2" pintype="passive"/>
+      <node ref="U1" pin="7" pinfunction="XTAL1/PB6" pintype="bidirectional"/>
+    </net>
+    <net code="44" name="VCC">
       <node ref="C2" pin="2" pintype="passive"/>
       <node ref="C4" pin="1" pintype="passive"/>
       <node ref="J1" pin="2" pinfunction="VCC" pintype="passive"/>
@@ -1223,20 +1253,17 @@
       <node ref="U1" pin="18" pinfunction="AVCC" pintype="power_in"/>
       <node ref="U1" pin="4" pinfunction="VCC" pintype="power_in"/>
     </net>
-    <net code="44" name="unconnected-(J2-Pad2)">
+    <net code="45" name="unconnected-(J2-Pad2)">
       <node ref="J2" pin="2" pinfunction="D-" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="45" name="unconnected-(J2-Pad3)">
+    <net code="46" name="unconnected-(J2-Pad3)">
       <node ref="J2" pin="3" pinfunction="D+" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="46" name="unconnected-(J2-Pad4)">
+    <net code="47" name="unconnected-(J2-Pad4)">
       <node ref="J2" pin="4" pinfunction="ID" pintype="passive+no_connect"/>
     </net>
-    <net code="47" name="unconnected-(J2-Pad6)">
+    <net code="48" name="unconnected-(J2-Pad6)">
       <node ref="J2" pin="6" pinfunction="Shield" pintype="passive+no_connect"/>
-    </net>
-    <net code="48" name="unconnected-(U1-Pad7)">
-      <node ref="U1" pin="7" pinfunction="XTAL1/PB6" pintype="bidirectional+no_connect"/>
     </net>
     <net code="49" name="unconnected-(U1-Pad8)">
       <node ref="U1" pin="8" pinfunction="XTAL2/PB7" pintype="bidirectional+no_connect"/>
